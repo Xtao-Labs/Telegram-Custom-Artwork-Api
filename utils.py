@@ -15,14 +15,23 @@ def parse_data(data: List[Music]) -> dict:
     return {"resultCount": length, "results": results}
 
 
-async def get_music(keyword: str) -> dict:
+async def get_music(service: str, keyword: str) -> dict:
     if not keyword:
         return default_data
     with contextlib.suppress(Exception):
         apple_result = await apple.Apple.get(keyword)
-        if apple_result:
-            return parse_data(apple_result)
-        netease_result = await netease.Netease.get(keyword)
-        if netease_result:
-            return parse_data(netease_result)
+        if service == "apple":
+            if apple_result:
+                return parse_data(apple_result)
+            netease_result = await netease.Netease.get(keyword)
+            if netease_result:
+                return parse_data(netease_result)
+        else:
+            if apple_result and apple_result[0].name == keyword:
+                return parse_data(apple_result)
+            netease_result = await netease.Netease.get(keyword)
+            if netease_result:
+                return parse_data(netease_result)
+            if apple_result:
+                return parse_data(apple_result)
     return default_data

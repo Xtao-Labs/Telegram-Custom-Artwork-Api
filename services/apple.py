@@ -22,5 +22,5 @@ class Apple:
         results = []
         for i in req["results"]:
             with contextlib.suppress(Exception):
-                results.append(Music(i["trackName"], i["artworkUrl100"]))
+                results.append(Music(i["trackName"], i["artworkUrl100"], i["artistName"]))
         return results
