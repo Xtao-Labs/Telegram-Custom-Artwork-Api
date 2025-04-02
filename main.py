@@ -18,3 +18,8 @@ async def search(
 @app.get("/")
 async def root():
     return RedirectResponse(url="https://music.163.com", status_code=302)
+
+
+@app.get("/favicon.ico")
+async def root2():
+    return RedirectResponse(url="https://s1.music.126.net/style/favicon.ico", status_code=302)
