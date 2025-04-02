@@ -1,0 +1,13 @@
+[project]
+name = "telegram-custom-artwork-api"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.115.12",
+    "httpx>=0.28.1",
+    "pyncm>=1.7.1",
+    "starlette>=0.46.1",
+    "uvicorn>=0.34.0",
+]
